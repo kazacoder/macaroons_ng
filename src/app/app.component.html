@@ -4,8 +4,8 @@
       <div class="logo">
         <a href="#"><img src="assets/images/logo.png" alt="Logo"></a>
       </div>
-      <div class="menu" id="menu">
-        <div class="menu__close" id="menu__close">
+      <div [class]="{menu: true, open: burgerMenuOpen}" (click)="burgerMenuOpen = false" id="menu">
+        <div [class]="{menu__close: true, rotated: burgerMenuOpen}" id="menu__close">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve">
@@ -35,7 +35,7 @@
         </ul>
       </div>
       <div class="phone header__phone">{{ phone }}</div>
-      <div class="burger-menu" id="burger">
+      <div [class]="{'burger-menu': true, pressed: burgerMenuOpen}" id="burger" (click)="burgerMenuOpen = true">
         <div class="burger-menu__line"></div>
         <div class="burger-menu__line"></div>
         <div class="burger-menu__line"></div>

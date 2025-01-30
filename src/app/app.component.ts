@@ -11,9 +11,11 @@ export class AppComponent {
   instagramLink = 'https://www.instagram.com/';
   phone = '+375 (29) 368-98-68';
   showPresent: boolean = true;
+
   private initialCheck: boolean = true;
   public successOrder: boolean = false;
   public orderSent: boolean = false;
+  public burgerMenuOpen: boolean = false;
 
   public scrollTo(target: HTMLElement) {
     target.scrollIntoView({ behavior: 'smooth' });
@@ -138,4 +140,5 @@ export class AppComponent {
       img: 'macaroon_4.png'
     },
   ]
+  protected readonly console = console;
 }
