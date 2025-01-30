@@ -174,7 +174,7 @@
   cursor: pointer;
   transition: box-shadow .3s ease;
   &:hover {
-    box-shadow: 0px 5px 9px 1px rgba(130, 19, 40, 0.5);
+    box-shadow: 0 5px 9px 1px rgba(130, 19, 40, 0.5);
   }
 }
 
@@ -435,6 +435,9 @@
             padding: 0 25px;
             font-size: 14px;
             display: none;
+            &.show {
+              display: block;
+            }
           }
           .order__btn {
             width: 294px;
@@ -454,6 +457,10 @@
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
         z-index: -1;
+        &.sent {
+          z-index: 1;
+          opacity: 1;
+        }
         .order__success-text {
           font-size: 45px;
           font-family: Tavolga, sans-serif;
@@ -528,7 +535,7 @@
   transition: box-shadow 0.3s ease;
   cursor: pointer;
   &:hover {
-    box-shadow: 0px 0px 12.6px 2.4px rgba(130, 19, 40, 0.5);
+    box-shadow: 0 0 12.6px 2.4px rgba(130, 19, 40, 0.5);
   }
   &:hover .gift-message {
     background-color: rgb(254, 239, 238);
@@ -579,25 +586,6 @@
       transform: rotate(45deg);
     }
   }
-}
-
-.error-popup {
-  display: none;
-  position: relative;
-  background: $background_third;
-  color: white;
-  padding: 20px;
-  width: auto;
-  max-width: 400px;
-  margin: 20px auto;
-  text-align: center;
-  font-size: 20px;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
-
-.mfp-close-btn-in .mfp-close {
-  color: white;
 }
 
 

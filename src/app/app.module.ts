@@ -7,16 +7,18 @@ registerLocaleData(localeRu);
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
+import {NgxMaskModule } from "ngx-mask";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        NgxMaskModule.forRoot()
+    ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru-RU'}
   ],

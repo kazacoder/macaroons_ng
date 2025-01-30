@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ProductType} from "./types";
 
 @Component({
@@ -11,40 +11,82 @@ export class AppComponent {
   instagramLink = 'https://www.instagram.com/';
   phone = '+375 (29) 368-98-68';
   showPresent: boolean = true;
+  private initialCheck: boolean = true;
+  public successOrder: boolean = false;
+  public orderSent: boolean = false;
 
   public scrollTo(target: HTMLElement) {
     target.scrollIntoView({ behavior: 'smooth' });
   }
 
-  public formValues = {
+  public formValues: {[key: string]: string} = {
     productTitle: '',
     name: '',
     phone: '',
   }
 
+  public formInValidCheck: {[key: string]: boolean} = {
+    productTitle: false,
+    name: false,
+    phone: false,
+  }
+
 
   public addToCart(product: ProductType, target: HTMLElement): void {
     this.scrollTo(target);
-    this.formValues.productTitle = product.title.toUpperCase();
+    this.formValues['productTitle'] = product.title.toUpperCase();
+    this.orderSent = false;
   }
 
   public createOrder() {
-    let inputs = Array.from(document.querySelectorAll('input'));
-    for (const input of inputs) {
-      if ((input as HTMLInputElement).value === '') {
-        alert(`Заполните поле ${(input as HTMLInputElement).placeholder}`);
-        return;
+    this.initialCheck = false;
+    let isValid: boolean = true
+    Object.entries(this.formValues).forEach(([key, value]) => {
+      let options: {} | null = null;
+
+      if (key === 'phone') {
+        options = {pattern: /^\d{10}$/}
       }
-    }
+      if (!this.isValidField(value, options)) {
+        isValid = false;
+        this.formInValidCheck[key] = true;
+      } else {
+        this.formInValidCheck[key] = false
+      }
+    })
 
-    (document.querySelector('.order__wrapper') as HTMLElement).style.opacity = '0';
-    (document.querySelector('.order__success') as HTMLElement).setAttribute('style', 'opacity: 1; z-index: 1');
-
-    this.formValues = {
-      productTitle: '',
-      name: '',
-      phone: '',
+    if (isValid) {
+      this.successOrder = true;
+      // имитация отправки запроса на сервер  и ожидания ответа, чтобы увидеть лоадер
+      let sendingOrder = setInterval(() => {
+        this.successOrder = false;
+        this.orderSent = true;
+        this.formValues = {
+          productTitle: '',
+          name: '',
+          phone: '',
+        }
+        clearInterval(sendingOrder);
+      }, 1000);
     }
+  }
+
+  private isValidField(fieldValue: string, options: {[key: string]: RegExp | string} | null = null): boolean {
+    if (!options) {
+      return !!fieldValue;
+    } else if (options['pattern']) {
+      return !!fieldValue.match(options['pattern']);
+    }
+    return false
+  }
+
+  public checkField (key: string) {
+    if (this.initialCheck) return;
+    let options: {} | null = null;
+    if (key === 'phone') {
+      options = {pattern: /^\d{10}$/}
+    }
+    this.formInValidCheck[key] = !this.isValidField(this.formValues[key], options);
   }
 
   public advantages = [

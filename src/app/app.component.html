@@ -118,31 +118,38 @@
       <img class="orders__images-strawberry-small" src="assets/images/strawberry_small.png" alt="Клубничка маленькая">
     </div>
     <div class="order__content">
-      <div class="order__wrapper">
+      <div class="order__wrapper" [style.opacity]="orderSent ? '0' : '1'">
         <h2 class="order__title" id="order">Закажите макарун!</h2>
         <p class="order__text">
           Выберите понравившийся макарун, заполните форму и ожидайте звонка нашего пекаря!
         </p>
         <div class="order__form">
           <label class="order__label" for="choice">Ваш выбор</label>
-          <input class="order__input first__input" id="choice" [(ngModel)]="formValues.productTitle" type="text" title="Ваш заказ"
-                 placeholder="Напишите, что хотите заказать...">
-          <div class="invalid-feedback">Необходимо ввести </div>
+          <input [class]="{order__input: true, first__input: true, 'invalid-value': formInValidCheck['productTitle']}"
+                 id="choice" [(ngModel)]="formValues['productTitle']" type="text" title="Ваш заказ"
+                 placeholder="Напишите, что хотите заказать..." (input)="checkField('productTitle')">
+          <div [class]="{'invalid-feedback': true, show: formInValidCheck['productTitle']}">Заполните Заказ</div>
           <div class="order-group">
             <label class="order__label" for="name">Заполните данные для заказа</label>
-            <input class="order__input" id="name" name="name" type="text" placeholder="Ваше имя" title="Ваше имя">
-            <div class="invalid-feedback">Необходимо ввести </div>
+            <input [class]="{order__input: true, 'invalid-value': formInValidCheck['name']}"
+                   id="name" [(ngModel)]="formValues['name']" type="text" placeholder="Ваше имя"
+                   title="Ваше имя" (input)="checkField('name')">
+            <div [class]="{'invalid-feedback': true, show: formInValidCheck['name']}">Укажите Имя</div>
           </div>
           <div class="order-group">
-            <label for="phone"></label>
-            <input class="order__input" id="phone" name="phone" type="text" placeholder="+7 (___) ___-____"
-                   title="Ваш телефон">
-            <div class="invalid-feedback">Необходимо ввести </div>
+            <label>
+              <input [class]="{order__input: true, 'invalid-value': formInValidCheck['phone']}"
+                     [(ngModel)]="formValues['phone']" type="text" placeholder="+7 (___) ___-__ __"
+                     title="Ваш телефон" prefix="+7 " mask="(000) 000-00 00" (input)="checkField('phone')">
+            </label>
+            <div [class]="{'invalid-feedback': true, show: formInValidCheck['phone']}">Введите корректный номер
+              телефона
+            </div>
           </div>
           <button class="btn order__btn" (click)="createOrder()">Оформить заказ</button>
         </div>
       </div>
-      <div class="order__success">
+      <div [class]="{order__success: true, sent: orderSent}">
         <div class="order__success-text">
           Спасибо за Ваш заказ. Мы скоро свяжемся с Вами!
         </div>
@@ -176,12 +183,17 @@
   </div>
 </div>
 
-
-<div id="error-popup" class="error-popup mfp-hide">
-  Popup content
-</div>
-
 <!--https://loading.io/css/-->
-<div class="loader">
-  <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<div class="loader" [style.display]="successOrder ? 'flex' : 'none'">
+  <div class="lds-grid">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </div>
