@@ -141,5 +141,4 @@ export class AppComponent {
       img: 'macaroon_4.png'
     },
   ]
-  protected readonly console = console;
 }
