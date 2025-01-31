@@ -18,6 +18,7 @@ export class AppComponent {
   public burgerMenuOpen: boolean = false;
 
   public scrollTo(target: HTMLElement) {
+    console.log(target)
     target.scrollIntoView({ behavior: 'smooth' });
   }
 

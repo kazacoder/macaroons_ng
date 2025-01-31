@@ -4,84 +4,6 @@
 .main {
   background: $background;
   overflow: hidden;
-  .header {
-    padding: 36px 0 25px 0;
-    display: flex;
-    position: relative;
-    justify-content: start;
-    align-items: center;
-    .menu {
-      z-index: 12;
-      transition: opacity 0.5s ease;
-      .menu__close {
-        display: none;
-        width: 40px;
-        height: 40px;
-        fill: $background_second;
-        position: absolute;
-        top: 25px;
-        right: 15px;
-        transform: rotate(-45deg);
-        transition: transform 0.5s ease;
-      }
-
-      .menu__close.rotated {
-        transform: rotate(0deg);
-      }
-      .menu__list {
-        list-style: none;
-        display: grid;
-        grid-auto-flow: column;
-        gap: 40px;
-        margin-left: 233px;
-        .menu__link {
-          text-decoration: none;
-          font-family: GilroyBold, sans-serif;
-          font-size: 14px;
-          letter-spacing: 0.45px;
-          color: rgb(119, 11, 29);
-          padding-bottom: 3px;
-          box-sizing: border-box;
-          border-bottom: 2px solid transparent;
-          transition: border-color .3s ease;
-          cursor: pointer;
-          &:hover {
-            border-color: $border_and_background;
-          }
-        }
-      }
-    }
-    .menu.open {
-      display: flex;
-      opacity: 1;
-      pointer-events: unset;
-    }
-    .burger-menu {
-      width: 40px;
-      height: 22px;
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-      transition: all 0.4s ease;
-      cursor: pointer;
-      box-sizing: border-box;
-      .burger-menu__line{
-        width: 40px;
-        height: 2px;
-        border: 1px solid $border_and_background;
-        box-sizing: border-box;
-      }
-      &.pressed {
-        padding-top: 8px;
-        transform: rotate(45deg);
-        gap: 0;
-      }
-    }
-    .header__phone {
-      position: absolute;
-      right: 0;
-    }
-  }
   .main-content {
     padding-bottom: 107px;
     margin-top: 124px;
@@ -152,12 +74,7 @@
 }
 
 
-.phone {
-  font-size: 16px;
-  font-family: GilroyBold, sans-serif;
-  color: white;
-  letter-spacing: 0.2px;
-}
+
 
 
 .btn {
