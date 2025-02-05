@@ -27,7 +27,7 @@ import {FooterComponent} from './components/footer/footer.component';
   providers: [
     {provide: LOCALE_ID, useValue: 'ru-RU'}, AppComponent
   ],
-  bootstrap: [AppComponent, FooterComponent]
+  bootstrap: [AppComponent, FooterComponent, HeaderComponent]
 })
 export class AppModule {
 }

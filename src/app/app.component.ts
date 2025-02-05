@@ -1,12 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProductType} from "./types";
+import {CartService} from "./services/cart.service";
+import {ProductService} from "./services/product.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: []
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Macaroons';
   instagramLink = 'https://www.instagram.com/';
   phone = '+375 (29) 368-98-68';
@@ -16,6 +19,14 @@ export class AppComponent {
   public successOrder: boolean = false;
   public orderSent: boolean = false;
   public burgerMenuOpen: boolean = false;
+  public products: ProductType[] = [];
+
+  // constructor(public cartService: CartService) { }
+  constructor(public cartService: CartService, private productService: ProductService) { }
+
+  ngOnInit(): void {
+    this.products = this.productService.getProducts();
+  }
 
   public scrollTo(target: HTMLElement) {
     console.log(target)
@@ -39,6 +50,8 @@ export class AppComponent {
     this.scrollTo(target);
     this.formValues['productTitle'] = product.title.toUpperCase();
     this.orderSent = false;
+    this.cartService.addCount()
+    this.cartService.addAmount(product.price)
   }
 
   public createOrder() {
@@ -115,30 +128,5 @@ export class AppComponent {
     },
   ]
 
-  public products: ProductType[] = [
-    {
-      title: 'Макарун с малиной',
-      amount: 1,
-      price: 1.7,
-      img: 'macaroon_1.png'
-    },
-    {
-      title: 'Макарун с манго',
-      amount: 1,
-      price: 1.7,
-      img: 'macaroon_2.png'
-    },
-    {
-      title: 'Пирог с ванилью',
-      amount: 1,
-      price: 1.7,
-      img: 'macaroon_3.png'
-    },
-    {
-      title: 'Пирог с фисташками',
-      amount: 1,
-      price: 1.7,
-      img: 'macaroon_4.png'
-    },
-  ]
+
 }

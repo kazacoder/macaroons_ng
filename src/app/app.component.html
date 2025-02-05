@@ -64,7 +64,7 @@
           <div class="product__title">{{ product.title }}</div>
           <div class="product__order">
             <div class="product_amount">{{ product.amount }} шт.</div>
-            <div class="product_price">{{ product.price | number : '1.2-2' }} руб.</div>
+            <div class="product_price">{{ product.price | currency:'руб.' }}</div>
             <div class="product_action">
               <button class="btn product__btn" (click)="addToCart(product, orderElement)">Заказать</button>
             </div>
@@ -123,13 +123,13 @@
   </div>
 </section>
 
-<div class="gift" *ngIf="showPresent">
-  <img class="gift_image" src="assets/images/present.png" alt="">
-  <div class="gift-block">
-    <div class="gift-message">
-      Оформите заказ и получите подарок
+<div class="cart" *ngIf="showPresent" [attr.data-count]="cartService.count" [style]="'--display: ' + cartService.display ">
+  <img class="cart_image" src="assets/images/cart.png" alt="">
+  <div class="cart-block">
+    <div class="cart-message">
+      <div>{{ cartService.total | currency:'руб.'}}</div>
     </div>
-    <div class="gift-angle"></div>
+    <div class="cart-angle"></div>
   </div>
 </div>
 

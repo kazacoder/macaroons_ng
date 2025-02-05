@@ -391,7 +391,7 @@
 
 
 
-.gift {
+.cart {
   position: fixed;
   border-radius: 50%;
   display: flex;
@@ -405,26 +405,49 @@
   background: radial-gradient(#71081e, #d7485c);
   transition: box-shadow 0.3s ease;
   cursor: pointer;
+  &::before {
+    display: var(--display);
+    text-align: center;
+    content: attr(data-count);
+    position: absolute;
+    background-color: rgb(254, 239, 238);
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(119, 10, 29);
+    color: rgb(119, 10, 29);
+  }
+  img {
+    margin-left: -10px;
+    width: 50%;
+    height: 50%;
+  }
   &:hover {
     box-shadow: 0 0 12.6px 2.4px rgba(130, 19, 40, 0.5);
   }
-  &:hover .gift-message {
+  &:hover .cart-message {
     background-color: rgb(254, 239, 238);
     border-color: rgb(119, 10, 29);
     color: rgb(119, 10, 29);
   }
-  &:hover .gift-block {
+  &:hover .cart-block {
     opacity: 1;
     bottom: 0;
   }
-  .gift-block {
+  .cart-block {
     opacity: 0;
     transition: opacity .3s ease-out, bottom .3s ease-in;
     position: fixed;
     bottom: -50px;
     right: 0;
     pointer-events: none;
-    .gift-message {
+    .cart-message {
+      display: flex;
+      align-items: center;
       border-width: 2px;
       border-style: solid;
       border-radius: 10px;
@@ -438,12 +461,12 @@
       box-sizing: border-box;
       font-size: 15px;
       font-family: GilroyMedium, sans-serif;
-      line-height: 1.333  ;
+      line-height: 15px;
       background-color: rgb(254, 239, 238);
       border-color: rgb(119, 10, 29);
       color: rgb(119, 10, 29);
     }
-    .gift-angle {
+    .cart-angle {
       border-width: 2px 2px 0 0;
       border-color: rgb(119, 10, 29);
       border-style: solid;
