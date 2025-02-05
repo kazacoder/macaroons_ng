@@ -44,11 +44,12 @@
     <div class="advantages__image">
       <img class="advantages__img" src="assets/images/macaroon_big.png" alt="Большой макарун">
     </div>
-    <div class="advantage" *ngFor="let advantage of advantages; let i = index;">
-      <div class="advantage__number">{{ i + 1 }}</div>
-      <div class="advantage__title">{{ advantage.title }}</div>
-      <div class="advantage__text">{{ advantage.text }}</div>
-    </div>
+    <advantage-component *ngFor="let advantage of advantages; let i = index" [advantage]="advantage" [index]="i"></advantage-component>
+<!--    <div class="advantage" *ngFor="let advantage of advantages; let i = index;">-->
+<!--      <div class="advantage__number">{{ i + 1 }}</div>-->
+<!--      <div class="advantage__title">{{ advantage.title }}</div>-->
+<!--      <div class="advantage__text">{{ advantage.text }}</div>-->
+<!--    </div>-->
   </div>
 </section>
 

@@ -135,40 +135,7 @@
         max-width: 100%;
       }
     }
-    .advantage {
-      .advantage__number {
-        display: flex;
-        border-radius: 50%;
-        background-color: $border_and_background;
-        width: 70px;
-        height: 70px;
-        justify-content: center;
-        align-items: end;
-        font-size: 60px;
-        font-family: GilroyEctraBold, sans-serif;
-        color: white;
-        line-height: 0.75;
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-      .advantage__title {
-        font-size: 20px;
-        font-family: GilroyEctraBold, sans-serif;
-        color: rgb(51, 25, 7);
-        margin-top: 13px;
-      }
 
-      .advantage__text {
-        font-size: 15px;
-        font-family: GilroyMedium, sans-serif;
-        color: rgb(51, 25, 7);
-        line-height: 1.333;
-        margin-top: 13px;
-      }
-      &:hover .advantage__number {
-        background-color: $background;
-        color: $border_and_background;
-      }
-    }
   }
 }
 
@@ -411,8 +378,8 @@
     content: attr(data-count);
     position: absolute;
     background-color: rgb(254, 239, 238);
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
     width: 20px;
     height: 20px;
     border-radius: 50%;

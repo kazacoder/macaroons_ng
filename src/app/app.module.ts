@@ -11,12 +11,14 @@ import {FormsModule} from "@angular/forms";
 import {NgxMaskModule} from "ngx-mask";
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
+import { AdvantageComponent } from './components/advantage/advantage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AdvantageComponent
   ],
   imports: [
     BrowserModule,

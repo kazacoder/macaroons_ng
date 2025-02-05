@@ -4,3 +4,8 @@ export type ProductType = {
   price: number,
   img: string
 }
+
+export type AdvantageType = {
+  title: string,
+  text: string,
+}
