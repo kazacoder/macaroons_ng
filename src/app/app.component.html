@@ -45,11 +45,6 @@
       <img class="advantages__img" src="assets/images/macaroon_big.png" alt="Большой макарун">
     </div>
     <advantage-component *ngFor="let advantage of advantages; let i = index" [advantage]="advantage" [index]="i"></advantage-component>
-<!--    <div class="advantage" *ngFor="let advantage of advantages; let i = index;">-->
-<!--      <div class="advantage__number">{{ i + 1 }}</div>-->
-<!--      <div class="advantage__title">{{ advantage.title }}</div>-->
-<!--      <div class="advantage__text">{{ advantage.text }}</div>-->
-<!--    </div>-->
   </div>
 </section>
 
@@ -57,21 +52,9 @@
   <div class="container products__container">
     <h2 class="products__title" id="products">Выберите свой макарун</h2>
     <div class="products__wrapper">
-      <div class="product-container" *ngFor="let product of products">
-        <div class="product-container__image">
-          <img class="product-container__img" src="assets/images/{{ product.img }}" alt="Макарун 1">
-        </div>
-        <div class="product">
-          <div class="product__title">{{ product.title }}</div>
-          <div class="product__order">
-            <div class="product_amount">{{ product.amount }} шт.</div>
-            <div class="product_price">{{ product.price | currency:'руб.' }}</div>
-            <div class="product_action">
-              <button class="btn product__btn" (click)="addToCart(product, orderElement)">Заказать</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <product-component
+        *ngFor="let product of products" [product]="product"
+        (addToCartEvent)="addToCart($event, orderElement)"></product-component>
     </div>
   </div>
 </section>
@@ -112,7 +95,7 @@
               телефона
             </div>
           </div>
-          <button class="btn order__btn" (click)="createOrder()">Оформить заказ</button>
+          <button class="btn order__btn" btnBg (click)="createOrder()">Оформить заказ</button>
         </div>
       </div>
       <div [class]="{order__success: true, sent: orderSent}">

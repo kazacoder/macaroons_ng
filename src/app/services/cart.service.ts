@@ -7,6 +7,7 @@ export class CartService {
   count: number = 0;
   display: string = 'none'
   total: number = 0;
+  title: string = ''
   constructor() { }
 
   addCount() {

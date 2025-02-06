@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import "app/styles/varibles";
 
 * {
   margin: 0;
@@ -52,4 +53,19 @@ body {
   font-family: GilroyBold, sans-serif;
   color: white;
   letter-spacing: 0.2px;
+}
+
+.btn {
+  background-image: -webkit-linear-gradient(90deg, $btn_color_1 0%, $btn_color_2 100%);
+  font-family: GilroyBold, sans-serif;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 30px;
+  line-height: 1;
+  cursor: pointer;
+  transition: box-shadow .3s ease;
+  &:hover {
+    box-shadow: 0 5px 9px 1px rgba(130, 19, 40, 0.5);
+  }
 }

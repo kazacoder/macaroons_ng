@@ -1,7 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductType} from "./types";
 import {CartService} from "./services/cart.service";
 import {ProductService} from "./services/product.service";
+import {MatDialog} from "@angular/material/dialog";
+import {PopupComponent} from "./components/popup/popup.component";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,7 @@ import {ProductService} from "./services/product.service";
 export class AppComponent implements OnInit {
   title = 'Macaroons';
   instagramLink = 'https://www.instagram.com/';
-  phone = '+375 (29) 368-98-68';
+  phone = '375293689868';
   showPresent: boolean = true;
 
   private initialCheck: boolean = true;
@@ -21,25 +23,27 @@ export class AppComponent implements OnInit {
   public burgerMenuOpen: boolean = false;
   public products: ProductType[] = [];
 
-  // constructor(public cartService: CartService) { }
-  constructor(public cartService: CartService, private productService: ProductService) { }
+  constructor(public cartService: CartService,
+              private productService: ProductService,
+              public popup: MatDialog
+  ) {
+  }
 
   ngOnInit(): void {
     this.products = this.productService.getProducts();
   }
 
   public scrollTo(target: HTMLElement) {
-    console.log(target)
-    target.scrollIntoView({ behavior: 'smooth' });
+    target.scrollIntoView({behavior: 'smooth'});
   }
 
-  public formValues: {[key: string]: string} = {
+  public formValues: { [key: string]: string } = {
     productTitle: '',
     name: '',
     phone: '',
   }
 
-  public formInValidCheck: {[key: string]: boolean} = {
+  public formInValidCheck: { [key: string]: boolean } = {
     productTitle: false,
     name: false,
     phone: false,
@@ -47,11 +51,15 @@ export class AppComponent implements OnInit {
 
 
   public addToCart(product: ProductType, target: HTMLElement): void {
-    this.scrollTo(target);
     this.formValues['productTitle'] = product.title.toUpperCase();
     this.orderSent = false;
-    this.cartService.addCount()
-    this.cartService.addAmount(product.price)
+    this.initialCheck = true;
+    // alert(`${product.title} добавлен в корзину`)
+    const cartPopUp =  this.popup.open(PopupComponent, {autoFocus: false})
+    cartPopUp.afterClosed().subscribe(() => {
+      this.scrollTo(target);
+    })
+
   }
 
   public createOrder() {
@@ -87,7 +95,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private isValidField(fieldValue: string, options: {[key: string]: RegExp | string} | null = null): boolean {
+  private isValidField(fieldValue: string, options: { [key: string]: RegExp | string } | null = null): boolean {
     if (!options) {
       return !!fieldValue;
     } else if (options['pattern']) {
@@ -96,7 +104,7 @@ export class AppComponent implements OnInit {
     return false
   }
 
-  public checkField (key: string) {
+  public checkField(key: string) {
     if (this.initialCheck) return;
     let options: {} | null = null;
     if (key === 'phone') {
@@ -127,6 +135,4 @@ export class AppComponent implements OnInit {
              получили 22.06.2016 г.`
     },
   ]
-
-
 }

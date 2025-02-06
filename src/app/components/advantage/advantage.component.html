@@ -1,5 +1,5 @@
 <div class="advantage">
   <div class="advantage__number">{{ index + 1 }}</div>
   <div class="advantage__title">{{ advantage.title }}</div>
-  <div class="advantage__text">{{ advantage.text }}</div>
+  <div class="advantage__text" title="{{advantage.text}}">{{ advantage.text | trunc:95 }}</div>
 </div>

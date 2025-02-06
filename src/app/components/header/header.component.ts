@@ -1,30 +1,27 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {AppComponent} from "../../app.component";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+
 
 @Component({
   selector: 'header-component',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent{
 
   @Input() burgerMenuOpen: boolean = false;
-  @Input() phone: string = '';
+  @Input() phone: string;
   @Input() productsElement!: HTMLElement;
   @Input() advantagesElement!: HTMLElement;
   @Input() orderElement!: HTMLElement;
 
-  @ViewChild(AppComponent)
-  appComponent!: AppComponent;
 
   @Output() scrollToEvent: EventEmitter<HTMLElement> = new EventEmitter<HTMLElement>();
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
+    this.phone = ''
   }
 
-  scrollTo(target: HTMLElement) {
+  public scrollTo(target: HTMLElement) {
     this.scrollToEvent.emit(target);
   }
 
