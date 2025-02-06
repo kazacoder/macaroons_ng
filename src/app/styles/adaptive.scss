@@ -182,24 +182,6 @@
       }
     }
   }
-
-  .footer {
-    padding: 50px 0;
-    .footer__container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 38px;
-      .logo__text, .footer__logo {
-        align-self: unset;
-        margin: 0;
-        padding: 0;
-      }
-      .footer__phone {
-        order: 1;
-      }
-    }
-  }
 }
 
 
